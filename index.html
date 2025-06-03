@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>វចនានុក្រមកូរ៉េ-ខ្មែរ</title>
+  <style>
+    body {
+      font-family: "Khmer OS Battambang", "Noto Sans KR", sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2d3436;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      width: 45%;
+    }
+    button {
+      background: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .entry {
+      background: white;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .korean { font-weight: bold; font-size: 18px; color: #2980b9; }
+    .khmer { margin-top: 5px; color: #2d3436; }
+  </style>
+</head>
+<body>
+
+  <h1>វចនានុក្រមកូរ៉េ-ខ្មែរ</h1>
+
+  <input type="text" id="koreanInput" placeholder="បញ្ចូលពាក្យកូរ៉េ">
+  <input type="text" id="khmerInput" placeholder="បញ្ចូលអត្ថន័យខ្មែរ">
+  <button onclick="addEntry()">បន្ថែម</button>
+
+  <div id="dictionary"></div>
+
+  <script>
+    const dictionary = [];
+
+    function addEntry() {
+      const korean = document.getElementById("koreanInput").value.trim();
+      const khmer = document.getElementById("khmerInput").value.trim();
+
+      if (korean && khmer) {
+        dictionary.push({ korean, khmer });
+        displayDictionary();
+        document.getElementById("koreanInput").value = "";
+        document.getElementById("khmerInput").value = "";
+      }
+    }
+
+    function displayDictionary() {
+      const container = document.getElementById("dictionary");
+      container.innerHTML = "";
+      dictionary.forEach(entry => {
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = `<div class="korean">${entry.korean}</div><div class="khmer">${entry.khmer}</div>`;
+        container.appendChild(div);
+      });
+    }
+  </script>
+
+</body>
+</html>
